@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "angular-qrcode.js",
   "ignore": [
-    "README.md"",
+    "README.md",
     "index.html"
   ],
   "dependencies": {
