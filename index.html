@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular QR Code</title>
+    <script src="qrcode-generator/jsqr.js"></script>
+    <script src="qrcode-generator/qrcode.js"></script>
+    <script src="angular.js"></script>
+    <script src="angular-qrcode.js"></script>
+  </head>
+
+  <body ng-app="tiago.qrcode">
+
+  <qrcode errorCorrectionLevel="L" data="testing this stuff" size="1"></qrcode>
+
+  <!--  <script type="text/javascript">
+        var qrcode = new QRCode("qrcode");
+
+        function makeCode () {    
+          var elText = "testing";
+          
+          qrcode.makeCode(elText);
+        }
+
+        makeCode()
+
+      
+    </script>-->
+<!--
+    <script>
+      qr.canvas({
+        canvas: document.getElementById('qr-code'),
+        level: 'L',
+        size: 6,
+        value: "BEGIN:VCARD\
+                VERSIO:3.0\
+                N:Gump;Forrest;;Mr.\
+                FN:Forrest Gump\
+                ORG:Bubba Gump Shrimp Co.\
+                TITLE:Shrimp Man\
+                PHOTO;VALUE=URL;TYPE=GIF:http://www.example.com/dir_photos/my_photo.gif\
+                TEL;TYPE=WORK,VOICE:(111) 555-12121\
+                TEL;TYPE=HOME,VOICE:(404) 555-1212\
+                ADR;TYPE=WORK:;;100 Waters Edge;Baytown;LA;30314;United States of America\
+                LABEL;TYPE=WORK:100 Waters Edge\nBaytown, LA 30314\nUnited States of America\
+                ADR;TYPE=HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America\
+                LABEL;TYPE=HOME:42 Plantation St.\nBaytown, LA 30314\nUnited States of America\
+                EMAIL;TYPE=PREF,INTERNET:forrestgump@example.com\
+                REV:2008-04-24T19:52:43Z\
+                END:VCARD"
+      });
+    </script>-->
+<!--
+    <script type="text/javascript">
+          'use strict';
+              var qr = new JSQR();
+
+              var code = new qr.Code();
+              code.encodeMode = code.ENCODE_MODE.UTF8_SIGNATURE;
+              code.version = code.DEFAULT;
+              code.errorCorrection = code.ERROR_CORRECTION.L;
+
+              var input = new qr.Input();
+              input.dataType = input.DATA_TYPE.TEXT;
+              input.data = {
+                   "text": "BEGIN:VCARD\nVERSION:3.0\nN:Gump;Forrest;;Mr.\nFN:Forrest Gump\nORG:Bubba Gump Shrimp Co.\nTITLE:Shrimp Man\nPHOTO;VALUE=URL;TYPE=GIF:http://www.example.com/dir_photos/my_photo.gif\nTEL;TYPE=WORK,VOICE:(111) 555-12121\nTEL;TYPE=HOME,VOICE:(404) 555-1212\nADR;TYPE=WORK:;;100 Waters Edge;Baytown;LA;30314;United States of America\nLABEL;TYPE=WORK:100 Waters Edge\nBaytown, LA 30314\nUnited States of America\nDR;TYPE=HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America\nLABEL;TYPE=HOME:42 Plantation St.\nBaytown, LA 30314\nUnited States of America\nEMAIL;TYPE=PREF,INTERNET:forrestgump@example.com\nREV:2008-04-24T19:52:43Z\nEND:VCARD"
+              };
+
+              var matrix = new qr.Matrix(input, code);
+
+              matrix.scale = 2;     
+
+              var canvas = document.createElement('canvas');
+              canvas.setAttribute('width', matrix.pixelWidth);
+              canvas.setAttribute('height', matrix.pixelWidth);
+              canvas.getContext('2d').fillStyle = 'rgb(0,0,0)';
+              matrix.draw(canvas, 0, 0);
+              document.body.appendChild(canvas);          // Append the canvas element to the documents body.
+
+
+     </script>
+
+-->
+
+
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>-->
+   
+  </body>
+</html>
