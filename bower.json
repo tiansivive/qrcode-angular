@@ -1,6 +1,6 @@
 {
   "name": "qrcode-angular",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "angular-qrcode.js",
   "ignore": [
     "README.md",
