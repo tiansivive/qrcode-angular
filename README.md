@@ -1,4 +1,4 @@
-angular-qrcode
+qrcode-angular
 ==============
 
 A small angular directive for the amazing qr code generator [js lib](http://jsqr.de/) by Jens Duttke
@@ -7,6 +7,4 @@ A small angular directive for the amazing qr code generator [js lib](http://jsqr
 Install
 -------
 
-    bower install tiansivive/angular-qrcode
-
-
+    bower install tiansivive/qrcode-angular

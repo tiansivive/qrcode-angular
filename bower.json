@@ -1,5 +1,5 @@
 {
-  "name": "angular-qrcode",
+  "name": "qrcode-angular",
   "version": "0.0.2",
   "main": "angular-qrcode.js",
   "ignore": [
@@ -8,6 +8,5 @@
   ],
   "dependencies": {
     "angular": ">=1.0.6",
-    "jsqr": "git://https://github.com/jens-duttke/jsqr.git"
   }
 }
