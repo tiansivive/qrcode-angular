@@ -8,7 +8,7 @@ angular.module('tiago.qrcode', [])
       'M': 'Medium',
       'Q': 'Quartile',
       'H': 'High'
-    },
+    }; //bug
 
     return {
       restrict: 'E',
