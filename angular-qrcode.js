@@ -26,6 +26,7 @@ angular.module('tiago.qrcode', [])
         background,
         foreground,
         scale,
+        bg,
         qr = new JSQR(),
         setECL = function(value) {
           ECL = value in levels ? value : 'L';
@@ -84,7 +85,13 @@ angular.module('tiago.qrcode', [])
 
           canvas.setAttribute('width', matrix.pixelWidth);
           canvas.setAttribute('height', matrix.pixelWidth);
-          canvas.getContext('2d').fillStyle = 'rgb(0,0,0)'; //TODO change with colors
+          var ctx = canvas.getContext('2d');
+          if (bg){
+            ctx.fillStyle = bg;
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+          }
+          ctx.fillStyle = 'rgb(0,0,0)'; //TODO change with colors
+          matrix.draw(canvas, 0, 0);
           matrix.draw(canvas, 0, 0);
         };
 
@@ -124,6 +131,14 @@ angular.module('tiago.qrcode', [])
             return;
           }
           scale = value;
+          create_code();
+        });        
+
+        attrs.$observe('bg', function(value) {
+          if (!value) {
+            return;
+          }
+          bg = value;
           create_code();
         });
 /*
