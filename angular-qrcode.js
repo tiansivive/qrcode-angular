@@ -137,6 +137,7 @@ angular.module('tiago.qrcode', [])
           create_code();
         });
 
+/* Until we found more effecient way to avoi multiples create_code calls
         attrs.$observe('bg', function(value) {
           if (!value) {
             return;
@@ -151,7 +152,7 @@ angular.module('tiago.qrcode', [])
           }
           emode = value;
           create_code();
-        });
+        });*/
         
 /*
         setECL(attrs.ECL);
