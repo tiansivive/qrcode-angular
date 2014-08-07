@@ -30,7 +30,7 @@ angular.module('tiago.qrcode', [])
         qr = new JSQR(),
         scale,
         bg,
-        emode = 'UTF8_SIGNATURE', 
+        emode = attrs.emode || 'UTF8_SIGNATURE', 
         setECL = function(value) {
           ECL = value in levels ? value : 'L';
         },
