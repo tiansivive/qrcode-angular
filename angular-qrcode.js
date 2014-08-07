@@ -25,6 +25,7 @@ angular.module('tiago.qrcode', [])
         size,
         background,
         foreground,
+        scale,
         qr = new JSQR(),
         setECL = function(value) {
           ECL = value in levels ? value : 'L';
@@ -79,7 +80,7 @@ angular.module('tiago.qrcode', [])
 
           var matrix = new qr.Matrix(input, code);
 
-          matrix.scale = 2;   //TODO change with size option   
+          if (scale) matrix.scale = scale;    
 
           canvas.setAttribute('width', matrix.pixelWidth);
           canvas.setAttribute('height', matrix.pixelWidth);
@@ -115,6 +116,14 @@ angular.module('tiago.qrcode', [])
           }
 
           setSize(value);
+          create_code();
+        });
+
+        attrs.$observe('scale', function(value) {
+          if (!value) {
+            return;
+          }
+          scale = value;
           create_code();
         });
 /*
