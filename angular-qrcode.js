@@ -8,24 +8,29 @@ angular.module('tiago.qrcode', [])
       'M': 'Medium',
       'Q': 'Quartile',
       'H': 'High'
-    },
+    }; //bug
 
     return {
       restrict: 'E',
       template: '<canvas></canvas>',
-      link: function(scope, element, attrs) {
+      scope: { //http://stackoverflow.com/questions/15896985/angular-js-callback-function-inside-directive-attr-defined-in-different-attr
+        callback: '&done'
+      }
+      ,link: function(scope, element, attrs) {
 
-        console.log("Element = " + element);
         var domElement = element[0],
         canvas = element.find('canvas')[0],
         trim_regex = /^(\s+\n+)|(\s+|\n+)$/g,
         error,
         ECL,
-        data,
+        data =  '',
         size,
         background,
         foreground,
         qr = new JSQR(),
+        scale,
+        bg = attrs.bg || false,
+        emode = attrs.emode || 'UTF8_SIGNATURE', 
         setECL = function(value) {
           ECL = value in levels ? value : 'L';
         },
@@ -56,7 +61,7 @@ angular.module('tiago.qrcode', [])
 
 
           var code = new qr.Code();
-          code.encodeMode = code.ENCODE_MODE.UTF8_SIGNATURE;
+          code.encodeMode = code.ENCODE_MODE[emode];
           code.version = code.DEFAULT;
           if(ECL == 'L'){
             code.errorCorrection = code.ERROR_CORRECTION.L;
@@ -79,12 +84,18 @@ angular.module('tiago.qrcode', [])
 
           var matrix = new qr.Matrix(input, code);
 
-          matrix.scale = 2;   //TODO change with size option   
+          if (scale) matrix.scale = scale;   //TODO change with size option   
 
           canvas.setAttribute('width', matrix.pixelWidth);
           canvas.setAttribute('height', matrix.pixelWidth);
-          canvas.getContext('2d').fillStyle = 'rgb(0,0,0)'; //TODO change with colors
+          var ctx = canvas.getContext('2d');
+          if (bg){
+            ctx.fillStyle = bg;
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+          }
+          ctx.fillStyle = 'rgb(0,0,0)'; //TODO change with colors
           matrix.draw(canvas, 0, 0);
+          scope.callback({canvas:canvas});
         };
 
 
@@ -116,7 +127,33 @@ angular.module('tiago.qrcode', [])
 
           setSize(value);
           create_code();
+        });        
+
+        attrs.$observe('scale', function(value) {
+          if (!value) {
+            return;
+          }
+          scale = value;
+          create_code();
         });
+
+/* Until we found more effecient way to avoi multiples create_code calls
+        attrs.$observe('bg', function(value) {
+          if (!value) {
+            return;
+          }
+          bg = value;
+          create_code();
+        });
+
+        attrs.$observe('emode', function(value) {
+          if (!value) {
+            return;
+          }
+          emode = value;
+          create_code();
+        });*/
+        
 /*
         setECL(attrs.ECL);
         setSize(attrs.size);
